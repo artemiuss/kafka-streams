@@ -26,6 +26,8 @@ services:
         source: ./favourites.csv
         target: /app/favourites.csv
     command: [ "./producer.py"]
+    depends_on:
+      - consumer
     networks:
       - kafka-stack-docker-compose_default
     environment:
@@ -40,6 +42,8 @@ services:
         source: ./streamer.py
         target: /app/streamer.py
     command: [ "./streamer.py"]
+    depends_on:
+      - init_kafka
     networks:
       - kafka-stack-docker-compose_default
     environment:
