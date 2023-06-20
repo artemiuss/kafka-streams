@@ -11,5 +11,9 @@ def main():
     KAFKA_PORT = os.getenv("KAFKA_PORT")
     KAFKA_TOPIC = os.getenv("KAFKA_TOPIC")
 
+    print("Starting streamer...")
+
+    print("Top five root domains:")
+
 if __name__ == '__main__':
     main()
