@@ -32,7 +32,7 @@ def main():
             root_domain_dict[root_domain] += 1
         else:
             root_domain_dict[root_domain] = 1
-        print(sorted(root_domain_dict.items(), key=lambda x: x[1], reverse=True)[:5])
+        sorted(root_domain_dict.items(), key=lambda x: x[1], reverse=True)[:5]
 
     app.run()
 

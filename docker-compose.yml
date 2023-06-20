@@ -11,8 +11,6 @@ services:
     command: [ "./init_kafka.py"]
     networks:
       - kafka-stack-docker-compose_default
-    environment:
-      PARTITIONS: ${PARTITIONS}
 
   producer:
     container_name: producer
@@ -30,8 +28,6 @@ services:
       - consumer
     networks:
       - kafka-stack-docker-compose_default
-    environment:
-      PRODUCERS: ${PRODUCERS}
   
   app:
     container_name: app
@@ -46,8 +42,6 @@ services:
       - init_kafka
     networks:
       - kafka-stack-docker-compose_default
-    environment:
-      PRODUCERS: ${PRODUCERS}
 
 networks:
   kafka-stack-docker-compose_default:

@@ -11,7 +11,7 @@ Instructions:
 
 ## Instructions on how to run the implementation
 
-Set up
+Set up and run
 ```
 git clone https://github.com/conduktor/kafka-stack-docker-compose.git
 cd kafka-stack-docker-compose
@@ -20,10 +20,6 @@ cd ..
 git clone https://github.com/artemiuss/kafka_throughput_investigation.git
 cd kafka_throughput_investigation
 docker compose build
-```
-
-Run streaming application
-```
 docker compose up
 ```
 
@@ -34,6 +30,8 @@ cd ../kafka-stack-docker-compose
 docker compose -f full-stack.yml down --rmi all -v --remove-orphans
 ```
 
-## Screenshots of your top five domains
+## Statistics
 
-![Screenshots](screenshots.png)
+1. List of languages with numbers of messages
+2. Number of messages among sentiment classes 
+3. Top 10 keywords
