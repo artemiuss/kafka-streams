@@ -25,7 +25,7 @@ services:
         target: /app/favorites.csv
     command: [ "./producer.py"]
     depends_on:
-      - consumer
+      - app
     networks:
       - kafka-stack-docker-compose_default
   

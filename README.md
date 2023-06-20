@@ -30,6 +30,6 @@ cd ../kafka-stack-docker-compose
 docker compose -f full-stack.yml down --rmi all -v --remove-orphans
 ```
 
-## Screenshots of your top five domains
+## Screenshots of top five domains
 
-![Screenshots](screenshots.png)
+![Screenshot](screenshot.png)
