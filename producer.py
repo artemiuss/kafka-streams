@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-import os, csv, json, datetime
+import os, csv, json, time
 from kafka import KafkaProducer
 from dotenv import load_dotenv
 
@@ -19,6 +19,7 @@ def main():
             json_data = json.dumps(row).encode('utf-8')
             print(json_data)
             producer.send(topic=KAFKA_TOPIC, value=json_data)
+            time.sleep(1)
         producer.flush()
 
     producer.close()

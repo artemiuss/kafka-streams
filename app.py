@@ -1,7 +1,13 @@
 #!/usr/bin/env python3
-import os, csv, json, datetime
-from kaflow import Kaflow
+import os, urllib
 from dotenv import load_dotenv
+from kaflow import (
+    FromValue,
+    Json,
+    Kaflow,
+    Message
+)
+from pydantic import BaseModel
 
 def main():
     load_dotenv()
@@ -10,9 +16,25 @@ def main():
     KAFKA_PORT = os.getenv("KAFKA_PORT")
     KAFKA_TOPIC = os.getenv("KAFKA_TOPIC")
 
-    app = Kaflow(name="AwesomeKakfaApp", brokers=f"{KAFKA_HOST}:{KAFKA_PORT}")
+    class URL(BaseModel):
+        URL: str
 
-    print("Top five root domains:")
+    app = Kaflow(brokers=f"{KAFKA_HOST}:{KAFKA_PORT}")
+
+    root_domain_dict = {}
+
+    @app.consume(topic=KAFKA_TOPIC)
+    async def consume_url(
+        message: FromValue[Json[URL]]
+    ):
+        root_domain = urllib.parse.urlparse(message.URL).netloc.split('.')[-1]
+        if root_domain in root_domain_dict:
+            root_domain_dict[root_domain] += 1
+        else:
+            root_domain_dict[root_domain] = 1
+        print(sorted(root_domain_dict.items(), key=lambda x: x[1], reverse=True)[:5])
+
+    app.run()
 
 if __name__ == '__main__':
     main()

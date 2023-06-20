@@ -1,6 +1,5 @@
 import random
 import string
-import csv
 import pandas as pd
 
 def generate_random_url():
