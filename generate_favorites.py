@@ -31,4 +31,4 @@ def generate_random_url():
 urls = [generate_random_url() for _ in range(100000)]
 
 df = pd.DataFrame(urls, columns=["URL"])
-df.to_csv('favourites.csv', index=False)
+df.to_csv('favorites.csv', index=False)

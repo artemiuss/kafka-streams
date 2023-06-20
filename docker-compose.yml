@@ -23,8 +23,8 @@ services:
         source: ./producer.py
         target: /app/producer.py
       - type: bind
-        source: ./favourites.csv
-        target: /app/favourites.csv
+        source: ./favorites.csv
+        target: /app/favorites.csv
     command: [ "./producer.py"]
     depends_on:
       - consumer
@@ -33,15 +33,15 @@ services:
     environment:
       PRODUCERS: ${PRODUCERS}
   
-  streamer:
-    container_name: streamer
+  app:
+    container_name: app
     build: .
-    image: streamer
+    image: app
     volumes:
       - type: bind
-        source: ./streamer.py
-        target: /app/streamer.py
-    command: [ "./streamer.py"]
+        source: ./app.py
+        target: /app/app.py
+    command: [ "./app.py"]
     depends_on:
       - init_kafka
     networks:
