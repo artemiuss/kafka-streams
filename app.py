@@ -2,10 +2,9 @@
 import os, urllib
 from dotenv import load_dotenv
 from kaflow import (
-    FromValue,
-    Json,
     Kaflow,
-    Message
+    FromValue,
+    Json
 )
 from pydantic import BaseModel
 
@@ -32,7 +31,9 @@ def main():
             root_domain_dict[root_domain] += 1
         else:
             root_domain_dict[root_domain] = 1
-        sorted(root_domain_dict.items(), key=lambda x: x[1], reverse=True)[:5]
+
+        root_domain_list = sorted(root_domain_dict.items(), key=lambda x: x[1], reverse=True)[:5]
+        print(', '.join(str(f"{x[0]} - {x[1]}") for x in root_domain_list))
 
     app.run()
 
