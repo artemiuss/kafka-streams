@@ -1,0 +1,50 @@
+services:
+
+  init_kafka:
+    container_name: init_kafka
+    build: .
+    image: producer
+    volumes:
+      - type: bind
+        source: ./init_kafka.py
+        target: /app/init_kafka.py
+    command: [ "./init_kafka.py"]
+    networks:
+      - kafka-stack-docker-compose_default
+    environment:
+      PARTITIONS: ${PARTITIONS}
+
+  producer:
+    container_name: producer
+    build: .
+    image: producer
+    volumes:
+      - type: bind
+        source: ./producer.py
+        target: /app/producer.py
+      - type: bind
+        source: ./favourites.csv
+        target: /app/favourites.csv
+    command: [ "./producer.py"]
+    networks:
+      - kafka-stack-docker-compose_default
+    environment:
+      PRODUCERS: ${PRODUCERS}
+  
+  streamer:
+    container_name: streamer
+    build: .
+    image: streamer
+    volumes:
+      - type: bind
+        source: ./streamer.py
+        target: /app/streamer.py
+    command: [ "./streamer.py"]
+    networks:
+      - kafka-stack-docker-compose_default
+    environment:
+      PRODUCERS: ${PRODUCERS}
+
+networks:
+  kafka-stack-docker-compose_default:
+    external: true

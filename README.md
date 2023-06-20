@@ -24,7 +24,7 @@ docker compose build
 
 Run streaming application
 ```
-./run_stream.sh
+docker compose up
 ```
 
 Stop and clean-up
