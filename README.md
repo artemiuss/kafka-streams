@@ -30,8 +30,6 @@ cd ../kafka-stack-docker-compose
 docker compose -f full-stack.yml down --rmi all -v --remove-orphans
 ```
 
-## Statistics
+## Screenshots of your top five domains
 
-1. List of languages with numbers of messages
-2. Number of messages among sentiment classes 
-3. Top 10 keywords
+![Screenshots](screenshots.png)
