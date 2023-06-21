@@ -11,5 +11,5 @@ WORKDIR /app
 COPY --from=builder /root/.local /root/.local
 COPY --from=builder /app/.env /app/.env
 COPY *.py ./
-ENTRYPOINT ["python"]
+ENTRYPOINT ["python", "-u"]
 CMD [""]
